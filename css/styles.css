@@ -938,6 +938,22 @@ textarea {
   resize: vertical;
 }
 
+.botcheck {
+  display: none;
+}
+
+.form-privacy {
+  margin: 0.55rem 0 0;
+  color: var(--muted);
+  font-size: 0.86rem;
+  line-height: 1.45;
+}
+
+.form-grid button:disabled {
+  cursor: wait;
+  opacity: 0.72;
+}
+
 .form-card {
   background: #fff;
   border: 1px solid var(--line);
@@ -975,6 +991,12 @@ textarea {
   padding: 1rem 1.1rem;
   border-radius: 6px;
   margin-bottom: 1rem;
+}
+
+.success-msg.error {
+  background: #fff1f0;
+  border-color: #f1b6b0;
+  color: #8f2420;
 }
 
 .map-wrap iframe {

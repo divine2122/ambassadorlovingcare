@@ -68,8 +68,12 @@
         <div class="form-card">
           <h2>Tell us how we can help</h2>
           <p class="lead">Families, case managers, and physicians can use this form. We’ll follow up by phone during business hours.</p>
-          <div class="success-msg" id="form-success" tabindex="-1">Thank you. Your request was received. Please call (678) 643-1188 if you need same-day assistance.</div>
-          <form id="referral-form">
+          <div class="success-msg" id="form-success" role="status" aria-live="polite" tabindex="-1"></div>
+          <form id="referral-form" action="https://api.web3forms.com/submit" method="POST">
+            <input type="hidden" name="access_key" value="6f9e7db8-eb54-4b20-81f7-942402acf59b">
+            <input type="hidden" name="subject" value="New care request — Ambassador Loving Care">
+            <input type="hidden" name="from_name" value="Ambassador Loving Care website">
+            <input class="botcheck" type="checkbox" name="botcheck" tabindex="-1" autocomplete="off">
             <div class="form-grid">
               <div>
                 <label for="name">Your name</label>
@@ -110,6 +114,7 @@
               <div class="full">
                 <label for="message">How can we help?</label>
                 <textarea id="message" name="message" placeholder="Share a little about the situation, preferred callback time, or referring physician."></textarea>
+                <p class="form-privacy">Please do not include medical records or sensitive health information. See our <a href="privacy.html">privacy notice</a>.</p>
               </div>
               <div class="full">
                 <button class="btn btn-primary" type="submit">Submit request</button>
