@@ -355,16 +355,17 @@ textarea {
   font-size: 0.95rem;
 }
 
-/* Hero — homepage contained split */
+/* Hero — homepage copy positioned in the photo's negative space */
 .hero-wrap {
   background: #fff;
   padding: 1.15rem 0 0.35rem;
 }
 
 .hero-split {
-  display: grid;
-  grid-template-columns: 1fr 1.05fr;
-  min-height: 540px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  min-height: 520px;
   background: #f3f5f7;
   color: var(--ink);
   overflow: hidden;
@@ -372,8 +373,12 @@ textarea {
 }
 
 .hero-split .hero-copy {
+  position: relative;
+  z-index: 2;
   display: flex;
   align-items: center;
+  width: 52%;
+  min-height: 520px;
   padding: 3.5rem 2.5rem 3.5rem 3.4rem;
 }
 
@@ -422,21 +427,31 @@ textarea {
 }
 
 .hero-split .hero-media {
-  position: relative;
-  min-height: 540px;
+  position: absolute;
+  inset: 0;
   margin: 0;
-  height: 100%;
 }
 
 .hero-split .hero-media::after {
-  display: none;
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    rgba(243, 245, 247, 0.99) 0%,
+    rgba(243, 245, 247, 0.95) 34%,
+    rgba(243, 245, 247, 0.7) 47%,
+    rgba(243, 245, 247, 0.08) 68%,
+    transparent 82%
+  );
 }
 
 .hero-split .hero-media img {
-  width: 100%;
+  width: 125%;
+  max-width: none;
   height: 100%;
   object-fit: cover;
-  object-position: center 18%;
+  object-position: center 24%;
 }
 
 /* Inner-page photo banner */
@@ -1110,20 +1125,35 @@ textarea {
   }
 
   .hero-split {
+    display: grid;
     grid-template-columns: 1fr;
     min-height: 0;
     border-radius: 22px;
   }
 
   .hero-split .hero-copy {
+    position: relative;
     order: 2;
     justify-content: flex-start;
+    width: 100%;
+    min-height: 0;
     padding: 1.75rem 1.35rem 2rem;
   }
 
   .hero-split .hero-media {
+    position: relative;
+    inset: auto;
     order: 1;
     min-height: 280px;
+  }
+
+  .hero-split .hero-media::after {
+    display: none;
+  }
+
+  .hero-split .hero-media img {
+    width: 100%;
+    object-position: center 18%;
   }
 
   .hero-wrap {
