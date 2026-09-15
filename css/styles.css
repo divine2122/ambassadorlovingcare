@@ -15,7 +15,7 @@
   --amber: #d88820;
   --shadow: 0 10px 30px rgba(22, 62, 86, 0.08);
   --radius: 6px;
-  --header: 84px;
+  --header: 76px;
   --max: 1180px;
   --font: "Source Sans 3", "Segoe UI", Helvetica, Arial, sans-serif;
 }
@@ -134,11 +134,6 @@ textarea {
   transition: 0.18s ease;
 }
 
-.header-cta .btn-primary {
-  border-radius: 999px;
-  padding-inline: 1.35rem;
-}
-
 .btn-soft {
   background: #fff;
   color: var(--ink);
@@ -226,20 +221,21 @@ textarea {
   top: 0;
   z-index: 50;
   background: #fff;
-  border-bottom: 1px solid var(--line);
+  border-bottom: 1px solid #eef1f4;
 }
 
 .header-inner {
   display: grid;
-  grid-template-columns: auto 1fr auto;
+  grid-template-columns: 1fr auto 1fr;
   align-items: center;
   min-height: var(--header);
-  gap: 1.5rem;
+  gap: 1.25rem;
 }
 
 .logo {
   display: flex;
   align-items: center;
+  min-width: 0;
   color: inherit;
   text-decoration: none;
 }
@@ -251,6 +247,7 @@ textarea {
 .logo img {
   height: 58px;
   width: auto;
+  max-width: 240px;
   display: block;
 }
 
@@ -269,44 +266,48 @@ textarea {
 .nav-main {
   display: flex;
   justify-content: center;
-  gap: 0.15rem;
+  flex-wrap: wrap;
+  gap: 2rem;
   list-style: none;
 }
 
 .nav-main a {
-  display: block;
-  padding: 0.55rem 0.8rem;
-  color: var(--ink);
-  font-weight: 650;
-  font-size: 0.98rem;
-  border-radius: 4px;
+  display: inline-flex;
+  align-items: center;
+  color: #6b7780;
+  font-weight: 500;
+  font-size: 1rem;
+  padding: 0.35rem 0;
+  background: transparent;
 }
 
-.nav-main a:hover,
-.nav-main a[aria-current="page"] {
-  color: var(--blue-deep);
+.nav-main a:hover {
   text-decoration: none;
-  background: var(--paper);
+  color: var(--navy-deep);
+}
+
+.nav-main a[aria-current="page"] {
+  color: var(--navy-deep);
+  font-weight: 600;
+  text-decoration: none;
 }
 
 .header-cta {
   display: flex;
   align-items: center;
+  justify-content: flex-end;
   gap: 0.65rem;
+  flex-shrink: 0;
 }
 
-.phone-link {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.4rem;
+.header-cta .btn-primary {
+  border-radius: 999px;
+  min-height: 44px;
+  padding: 0.65rem 1.4rem;
+  font-size: 0.95rem;
   font-weight: 700;
-  color: var(--navy);
   white-space: nowrap;
-}
-
-.phone-link:hover {
-  color: var(--blue-deep);
-  text-decoration: none;
+  border-width: 0;
 }
 
 .menu-toggle {
@@ -1036,17 +1037,26 @@ textarea {
 
 @media (max-width: 980px) {
   .header-inner {
-    grid-template-columns: auto 1fr auto;
+    grid-template-columns: minmax(0, 1fr) auto;
   }
 
-  .nav-main,
-  .header-cta .btn,
-  .header-cta .phone-link {
+  .header-inner nav {
     display: none;
+  }
+
+  .nav-main {
+    display: none;
+  }
+
+  .header-cta .btn-primary {
+    min-height: 40px;
+    padding: 0.55rem 1.1rem;
+    font-size: 0.88rem;
   }
 
   .logo img {
     height: 44px;
+    max-width: 170px;
   }
 
   .menu-toggle {
@@ -1055,6 +1065,10 @@ textarea {
     border-radius: 4px;
     padding: 0 0.7rem;
     flex-shrink: 0;
+  }
+
+  .menu-toggle::after {
+    display: none;
   }
 
   .hero-content {
@@ -1142,16 +1156,36 @@ textarea {
   }
 
   .nav-drawer a {
-    display: block;
-    padding: 0.8rem 20px;
-    color: var(--ink);
+    display: flex;
+    align-items: center;
+    margin: 0;
+    padding: 0.85rem 20px;
+    color: #6b7780;
+    font-weight: 600;
+  }
+
+  .nav-drawer a:hover,
+  .nav-drawer a[aria-current="page"] {
+    text-decoration: none;
+    color: var(--navy-deep);
+    background: var(--paper);
+  }
+
+  .nav-drawer .drawer-cta {
+    display: flex;
+    justify-content: center;
+    margin: 0.75rem 20px 0.25rem;
+    padding: 0.75rem 1rem;
+    color: #fff;
+    background: var(--blue);
+    border-radius: 999px;
     font-weight: 700;
   }
 
-  .nav-drawer .drawer-actions {
-    display: grid;
-    gap: 0.6rem;
-    padding: 0.6rem 20px 0;
+  .nav-drawer .drawer-cta:hover,
+  .nav-drawer .drawer-cta[aria-current="page"] {
+    background: var(--blue-hover);
+    color: #fff;
   }
 
   .mobile-cta {
@@ -1171,6 +1205,19 @@ textarea {
 
   body.menu-open {
     overflow: hidden;
+  }
+}
+
+@media (max-width: 480px) {
+  .logo img {
+    max-width: 42vw;
+    height: 40px;
+  }
+
+  .header-cta .btn-primary {
+    min-height: 36px;
+    padding: 0.45rem 0.8rem;
+    font-size: 0.8rem;
   }
 }
 
